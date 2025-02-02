@@ -1,119 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loan Application Form</title>
-    <link rel="stylesheet" href="../static/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loan Application Form</title>
+  <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
-    <h2>Loan Application Form</h2>
-    <form id="loanForm" onsubmit="return submitForm(event)">
-        <!-- Previous form fields remain the same -->
-        <div class="form-group">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-        </div>
-
-        <div class="form-group">
-            <label for="bankAccount">Bank Account:</label>
-            <input type="text" id="bankAccount" name="bankAccount" required>
-        </div>
-
-        <div class="form-group">
-            <label for="employmentStatus">Employment Status:</label>
-            <select id="employmentStatus" name="employmentStatus" required>
-                <option value="">Please select</option>
-                <option value="employed">Full-time Employed</option>
-                <option value="self-employed">Self-employed</option>
-                <option value="unemployed">Unemployed</option>
-                <option value="retired">Retired</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="income">Monthly Income ($):</label>
-            <input type="number" id="income" name="income" min="0" required>
-        </div>
-
-        <div class="form-group">
-            <label for="defaultRecord">Default Record:</label>
-            <select id="defaultRecord" name="defaultRecord" required>
-                <option value="">Please select</option>
-                <option value="no">No</option>
-                <option value="yes">Yes</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label>Loan Details:</label>
-            <div class="loan-details">
-                <div>
-                    <label for="loanAmount">Loan Amount ($):</label>
-                    <input type="number" id="loanAmount" name="loanAmount" min="0" required>
-                </div>
-                <div>
-                    <label for="loanPeriod">Loan Period (months):</label>
-                    <input type="number" id="loanPeriod" name="loanPeriod" min="1" max="360" required>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="loanUsage">Loan Purpose:</label>
-            <select id="loanUsage" name="loanUsage" required>
-                <option value="">Please select</option>
-                <option value="personal">Personal Consumption</option>
-                <option value="business">Business Operations</option>
-                <option value="house">House Purchase</option>
-                <option value="car">Vehicle Purchase</option>
-                <option value="education">Education Expenses</option>
-                <option value="other">Other Purposes</option>
-            </select>
-        </div>
-
-        <button type="submit">Submit Application</button>
-    </form>
-
-    <!-- Result Display Section -->
-    <div id="resultSection" style="display: none; margin-top: 20px; padding: 20px; border-radius: 4px;">
-        <h3>Credit Assessment Result</h3>
-        <p id="creditScore"></p>
-        <p id="loanDecision"></p>
-        <p id="riskAnalysis"></p>
+  <h2>Loan Application Form</h2>
+  <form id="loanForm">
+    <div class="form-group">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
     </div>
 
-    <script>
-        function validateForm(event) {
-            event.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(event.target);
-            const data = Object.fromEntries(formData.entries());
-            
-            // Simple form validation
-            if (parseInt(data.loanAmount) <= 0) {
-                alert('Please enter a valid loan amount');
-                return false;
-            }
-            
-            if (parseInt(data.loanPeriod) <= 0 || parseInt(data.loanPeriod) > 360) {
-                alert('Please enter a valid loan period (1-360 months)');
-                return false;
-            }
-            
-            if (parseInt(data.income) <= 0) {
-                alert('Please enter a valid monthly income');
-                return false;
-            }
-            
-            // Additional validation logic can be added here
-            
-            // Display submitted data
-            console.log('Form data:', data);
-            alert('Form submitted successfully!');
-            return false; // Prevent actual submission
-        }
-    </script>
+    <div class="form-group">
+      <label for="bankAccount">Bank Account:</label>
+      <input type="text" id="bankAccount" name="bankAccount" required>
+    </div>
+
+    <div class="form-group">
+      <label for="employmentStatus">Employment Status:</label>
+      <select id="employmentStatus" name="employmentStatus" required>
+        <option value="">Please select</option>
+        <option value="employed">Full-time Employed</option>
+        <option value="self-employed">Self-employed</option>
+        <option value="unemployed">Unemployed</option>
+        <option value="retired">Retired</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="income">Monthly Income ($):</label>
+      <input type="number" id="income" name="income" min="0" required>
+    </div>
+
+    <div class="form-group">
+      <label for="defaultRecord">Default Record:</label>
+      <select id="defaultRecord" name="defaultRecord" required>
+        <option value="">Please select</option>
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Loan Details:</label>
+      <div class="loan-details">
+        <div>
+          <label for="loanAmount">Loan Amount ($):</label>
+          <input type="number" id="loanAmount" name="loanAmount" min="0" required>
+        </div>
+        <div>
+          <label for="loanPeriod">Loan Period (months):</label>
+          <input type="number" id="loanPeriod" name="loanPeriod" min="1" max="360" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="loanUsage">Loan Purpose:</label>
+      <select id="loanUsage" name="loanUsage" required>
+        <option value="">Please select</option>
+        <option value="personal">Personal Consumption</option>
+        <option value="business">Business Operations</option>
+        <option value="house">House Purchase</option>
+        <option value="car">Vehicle Purchase</option>
+        <option value="education">Education Expenses</option>
+        <option value="other">Other Purposes</option>
+      </select>
+    </div>
+    
+    <!-- 新增贷款用途说明字段（可选） -->
+    <div class="form-group">
+      <label for="loanReason">Loan Reason (optional):</label>
+      <textarea id="loanReason" name="loanReason" rows="3"></textarea>
+    </div>
+
+    <button type="submit">Submit Application</button>
+  </form>
+
+  <!-- 结果展示区域 -->
+  <div id="resultSection" style="display: none; margin-top: 20px; padding: 20px; border-radius: 4px;">
+    <h3>Credit Assessment Result</h3>
+    <p id="creditScore"></p>
+    <p id="loanDecision"></p>
+    <p id="riskAnalysis"></p>
+  </div>
+
+  <script>
+    document.getElementById('loanForm').addEventListener('submit', submitForm);
+
+    function submitForm(event) {
+      event.preventDefault();
+      
+      // 获取并验证表单数据
+      const form = event.target;
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+      
+      if (parseInt(data.loanAmount) <= 0) {
+        alert('Please enter a valid loan amount');
+        return;
+      }
+      if (parseInt(data.loanPeriod) <= 0 || parseInt(data.loanPeriod) > 360) {
+        alert('Please enter a valid loan period (1-360 months)');
+        return;
+      }
+      if (parseInt(data.income) <= 0) {
+        alert('Please enter a valid monthly income');
+        return;
+      }
+      
+      // 以 JSON 格式提交数据到后端接口
+      fetch('/evaluate_loan', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      })
+      .then(response => response.json())
+      .then(result => {
+        // 显示评估结果
+        document.getElementById('creditScore').innerText = "Credit Score: " + result.credit_score;
+        document.getElementById('loanDecision').innerText = "Loan Decision: " + result.decision;
+        document.getElementById('riskAnalysis').innerText = "Risk Analysis: " + result.risk_analysis;
+        document.getElementById('resultSection').style.display = 'block';
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred while processing your application.');
+      });
+    }
+  </script>
 </body>
 </html>

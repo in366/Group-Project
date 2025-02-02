@@ -153,4 +153,4 @@ def get_risk_analysis(score, data):
     return "; ".join(analysis)
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5001)
+    app.run(debug=True, port=5006)
